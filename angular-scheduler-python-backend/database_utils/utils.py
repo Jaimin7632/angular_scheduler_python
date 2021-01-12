@@ -52,15 +52,18 @@ def get_backend_resources():
 
 @use_database(db_instance=db)
 def create_events(**kargs):
+    print(kargs)
     db_init()
-    name = kargs.get('name')
+    name = kargs.get('text')
     start = kargs.get('start')
     end = kargs.get('end')
     resource = kargs.get('resource')
 
     res = events.create(name=name, start=start, end=end, resources_id=resource)
     response = {'result': 'OK',
-                'message': 'Created with id: ' + str(res.id)}
+                'message': 'Created with id: ' + str(res.id),
+                'id':str(res.id)}
+    print(response)
     return json.dumps(response)
 
 
@@ -98,3 +101,5 @@ def update_backend_move(**kargs):
     response = dict()
     response['result'] = 'OK'
     response['message'] = 'Update successful'
+
+    return json.dumps(response)
