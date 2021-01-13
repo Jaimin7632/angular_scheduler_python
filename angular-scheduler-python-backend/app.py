@@ -29,6 +29,4 @@ def backend_resources():
 
 if __name__ == "__main__":
     app.run(host='127.0.0.1', port=8090)
-    # print(db_utils.get_backend_resources())
-    # print(db_utils.backend_create(name='cvt', start=datetime.now(), end=datetime.now(), resource='1'))
-    # print(db_utils.get_backend_events(frm=datetime.now(), to=datetime.now()))
+    

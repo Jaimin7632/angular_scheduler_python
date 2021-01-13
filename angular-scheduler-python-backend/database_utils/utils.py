@@ -42,7 +42,7 @@ def get_backend_resources():
         children = resources.select(resources).where(resources.group_id == g.id).order_by(resources.name).objects()
         for child in children:
             grp_dict.setdefault('children', []).append({
-                'id': child.id,
+                'id': str(child.id),
                 'name': child.name
             })
         response.append(grp_dict)
@@ -63,7 +63,6 @@ def create_events(**kargs):
     response = {'result': 'OK',
                 'message': 'Created with id: ' + str(res.id),
                 'id':str(res.id)}
-    print(response)
     return json.dumps(response)
 
 
@@ -78,14 +77,14 @@ def get_backend_events(**kargs):
     response = []
     for row in feached_events:
         temp_dict = {}
-        temp_dict['id'] = row.id
-        temp_dict['name'] = row.name
+        temp_dict['id'] = str(row.id)
+        temp_dict['text'] = row.name
         temp_dict['start'] = row.start
         temp_dict['end'] = row.end
-        temp_dict['resource_id'] = row.resource_id
+        temp_dict['resource'] = row.resources_id
 
         response.append(temp_dict)
-
+    
     return json.dumps(response)
 
 
